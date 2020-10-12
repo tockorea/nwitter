@@ -14,7 +14,7 @@ function App() {
       }
       setInit(true);
     });
-  }, [])
+  }, []);
   return (
     <>
       {init ? <AppRouter isLoggedIn={isLoggedIn} /> : "Initializing..."}

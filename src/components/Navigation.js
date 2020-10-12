@@ -13,7 +13,7 @@ const Navigation = () => {
         </li>
       </ul>
     </nav>
-  )
+  );
 };
 
 export default Navigation;
