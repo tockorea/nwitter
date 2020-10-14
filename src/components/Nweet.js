@@ -1,5 +1,5 @@
-import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
+import { dbService, storageService } from "fbase";
 
 const Nweet = ({ nweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
@@ -29,21 +29,18 @@ const Nweet = ({ nweetObj, isOwner }) => {
     <div>
       {editing ? (
         <>
-          {isOwner && (
-            <>
-              <form onSubmit={onSubmit}>
-                <input
-                  type="text"
-                  placeholder="Edit your nweet"
-                  value={newNweet}
-                  required
-                  onChange={onChange}
-                />
-                <input type="submit" value="Update Nweet" />
-              </form>
-              <button onClick={toggleEditing}>Cancel</button>
-            </>
-          )}
+          <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              placeholder="Edit your nweet"
+              value={newNweet}
+              required
+              autoFocus
+              onChange={onChange}
+            />
+            <input type="submit" value="Update Nweet" />
+          </form>
+          <button onClick={toggleEditing}>Cancel</button>
         </>
       ) : (
         <>
