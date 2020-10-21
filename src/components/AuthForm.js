@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { authService } from "fbase";
 
-const AuthForm = () => {
+const AuthForm = ({ socialError }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newAccount, setNewAccount] = useState(true);
@@ -24,8 +24,8 @@ const AuthForm = () => {
       } else {
         await authService.signInWithEmailAndPassword(email, password);
       }
-    } catch (error) {
-      setError(error.message);
+    } catch (e) {
+      setError(e.message);
     }
   };
   const toggleAccount = () => setNewAccount((prev) => !prev);
@@ -55,7 +55,9 @@ const AuthForm = () => {
           value={newAccount ? "Create Account" : "Sign In"}
           className="authInput authSubmit"
         />
-        {error && <span className="authError">{error}</span>}
+        {socialError
+          ? socialError && <span className="authError">{socialError}</span>
+          : error && <span className="authError">{error}</span>}
       </form>
       <span onClick={toggleAccount} className="authSwitch">
         {newAccount ? "Sign In" : "Create Account"}

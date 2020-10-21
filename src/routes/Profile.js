@@ -7,8 +7,8 @@ export default ({ refreshUser, userObj }) => {
   const [newDisplayName, setNewDisplayName] = useState(
     userObj.displayName ? userObj.displayName : ""
   );
-  const onLogOutClick = () => {
-    authService.signOut();
+  const onLogOutClick = async () => {
+    await authService.signOut();
     history.push("/");
   };
   const onChange = (event) => {

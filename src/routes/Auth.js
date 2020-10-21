@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const Auth = () => {
-  const [error, setError] = useState("");
+  const [socialError, setSocialError] = useState("");
   const onSocialClick = async (event) => {
     try {
       const {
@@ -23,7 +23,7 @@ const Auth = () => {
       }
       await authService.signInWithPopup(provider);
     } catch (e) {
-      setError(e.message);
+      setSocialError(e.message);
     }
   };
   return (
@@ -34,7 +34,7 @@ const Auth = () => {
         size="3x"
         style={{ marginBottom: 30 }}
       />
-      <AuthForm />
+      <AuthForm socialError={socialError} />
       <div className="authBtns">
         <button onClick={onSocialClick} name="google" className="authBtn">
           Continue with Google <FontAwesomeIcon icon={faGoogle} />
@@ -43,7 +43,6 @@ const Auth = () => {
           Continue with Github <FontAwesomeIcon icon={faGithub} />
         </button>
       </div>
-      {error}
     </div>
   );
 };
